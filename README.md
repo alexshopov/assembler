@@ -1,5 +1,4 @@
-This is a basic starting point for Harvard Extension [CSCIE-93 Computer Architecture](http://sites.fas.harvard.edu/~cscie287/) students to develop a MIPS-like assembler written in C. Input validation, error checking,  
-and support for labels, data blocks, etc are up to you to implement.
+This is a basic starting point for Harvard Extension [CSCIE-93 Computer Architecture](http://sites.fas.harvard.edu/~cscie287/) students to develop a MIPS-like assembler written in C. Input validation, error checking, and support for labels, data blocks, etc are up to you to implement.
 
 ## Instruction Set
 
