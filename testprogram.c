@@ -24,31 +24,17 @@ void add_instruction(char *buffer) {
 void test_r_type(void) {
     char buffer[15];
     sprintf(buffer, "add $r1, $r2");
-    char *expected = "0000 : 0010";
-
     add_instruction(buffer);
 
-    if (strcmp(buffer, expected) != 0) {
-        printf("test_r_type failed: %s != %s\n", buffer, expected);
-        CU_FAIL();
-    } else {
-        CU_PASS();
-    }
+    CU_ASSERT_STRING_EQUAL(buffer, "0000 : 0010");
 }
 
 void test_i_type(void) {
     char buffer[15];
     sprintf(buffer, "li $r2, 0x2");
-    char *expected = "0000 : 1102";
-
     add_instruction(buffer);
 
-    if (strcmp(buffer, expected) != 0) {
-        printf("test_i_type failed: %s != %s\n", buffer, expected);
-        CU_FAIL();
-    } else {
-        CU_PASS();
-    }
+    CU_ASSERT_STRING_EQUAL(buffer, "0000 : 1102");
 }
 
 int main (void)// Main function
@@ -66,14 +52,9 @@ int main (void)// Main function
         return CU_get_error();
     }
 
-    //add test_r_type to suite1
-    if ((NULL == CU_add_test(pSuite1, "\n\n……… Testing instruction function……..\n\n", test_r_type))) {
-        CU_cleanup_registry();
-        return CU_get_error();
-    }
-
-    //add test_i_type to suite1
-    if ((NULL == CU_add_test(pSuite1, "\n\n……… Testing instruction function……..\n\n", test_i_type))) {
+    //add test_r_type and test_i_type to suite1
+    if ((NULL == CU_add_test(pSuite1, "\n\n……… Testing R-Type instruction ……..\n\n", test_r_type)) ||
+        (NULL == CU_add_test(pSuite1, "\n\n……… Testing I-Type instruction ……..\n\n", test_i_type))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
