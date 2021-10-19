@@ -4,10 +4,33 @@
 #include "constants.h"
 #include "instructions.h"
 
+/**
+ * allocate memory and initialize a new Instruction
+ */
+struct Instruction *mallocInstruction() {
+	struct Instruction *instruction = (struct Instruction*) malloc(sizeof(struct Instruction));
+
+	instruction->address = 0;
+	instruction->type = 0;
+	instruction->opcode = 0;
+	instruction->r1 = 0;
+	instruction->r2 = 0;
+	instruction->immediate = 0;
+	instruction->funccode = 0;
+	instruction->next = NULL;
+
+	return instruction;
+}
+
+/**
+ * convert a register token to the appropriate register index
+ */
 int setRegister(char *reg) {
 	char last = reg[strlen(reg) - 1];
+
+	// remove the comma or newline at the end of the token
 	if (last == ',' || last == '\n') {
-		reg[strlen(reg) - 1] = '\0';	// remove the comma or newline at the end of the token
+		reg[strlen(reg) - 1] = '\0';
 	}
 	
 	if (strcmp(reg, "$r1") == 0) {
@@ -19,16 +42,25 @@ int setRegister(char *reg) {
 	return -1;
 }
 
+/**
+ * convert an immediate token to its hex value
+ */
 int setImmediate(char *immediate) {
 	return (int)strtol(immediate, NULL, 16);
 }
 
-int printRType(struct Instruction *instruction, char *buffer) {
+/**
+ * sprint an R-Type instruction to its MIF represetnation
+ */
+int sprintRType(struct Instruction *instruction, char *buffer) {
 	sprintf(buffer, "%04d : %d%d%d%d", instruction->address, instruction->opcode, instruction->r1, instruction->r2, instruction->funccode);
 	return 0;
 }
 
-int printIType(struct Instruction *instruction, char *buffer) {
+/**
+ * sprint an I-Type instruction to its MIF represetnation
+ */
+int sprintIType(struct Instruction *instruction, char *buffer) {
 	sprintf(buffer, "%04d : %d%d%02d", instruction->address, instruction->opcode, instruction->r1, instruction->immediate);
 	return 0;
 }

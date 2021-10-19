@@ -8,13 +8,13 @@ default: assembler.o instructions.o
 	$(CC) $(CFLAGS) -o assembler assembler.o instructions.o
 
 assembler.o : assembler.c instructions.h
-	gcc -c assembler.c
+	$(CC) $(CFLAGS) -c assembler.c
 
 instructions.o : instructions.c instructions.h
-	gcc -c instructions.c
+	$(CC) $(CFLAGS) -c instructions.c
 
 testprogram.o : testprogram.c instructions.h
-	gcc -c testprogram.c
+	$(CC) $(CFLAGS) -c testprogram.c
 
 test: testprogram.o instructions.o
 	$(CC) $(CFLAGS) -o testprogram testprogram.o instructions.o -lcunit && ./testprogram

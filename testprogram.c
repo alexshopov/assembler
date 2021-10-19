@@ -15,9 +15,9 @@ void add_instruction(char *buffer) {
 	parseInstruction(buffer, instruction);
 
     if (instruction->type == R_TYPE) {
-        printRType(instruction, buffer);
+        sprintRType(instruction, buffer);
     } else if (instruction->type == I_TYPE) {
-        printIType(instruction, buffer);
+        sprintIType(instruction, buffer);
     }
 }
 

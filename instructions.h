@@ -13,10 +13,11 @@ struct Instruction {
 	struct Instruction *next;
 };
 
+struct Instruction *mallocInstruction();
 int setRegister(char *reg);
 int setImmediate(char *immediate);
-int printRType(struct Instruction *instruction, char *buffer);
-int printIType(struct Instruction *instruction, char *buffer);
+int sprintRType(struct Instruction *instruction, char *buffer);
+int sprintIType(struct Instruction *instruction, char *buffer);
 int parseInstruction(char *line, struct Instruction *instruction);
 
 #endif
