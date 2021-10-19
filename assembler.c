@@ -27,11 +27,18 @@ int main(int argc, char **argv) {
 	out = fopen(argv[2], "w");
 
 	current = head;
+	char buffer[13];
+	int i = 0;
 	while (current != NULL) {
+
 		if (current->type == R_TYPE) {
-			printRType(current, out);
+			printRType(current, buffer);
 		} else if (current->type == I_TYPE) {
-			printIType(current, out);
+			printIType(current, buffer);
+		}
+
+		if (current->address != -1) {
+			fprintf(out, "%s\n", buffer);
 		}
 
 		current = current->next;
@@ -52,6 +59,7 @@ int parseLine(char *line, int programcounter, struct Instruction *instruction) {
 	parseInstruction(line, instruction);
 
 	instruction->next = (struct Instruction*) malloc(sizeof(struct Instruction));
+	instruction->next->address = -1;
 
 	programcounter++;
 

@@ -15,8 +15,8 @@ struct Instruction {
 
 int setRegister(char *reg);
 int setImmediate(char *immediate);
-int printRType(struct Instruction *instruction, FILE *fp);
-int printIType(struct Instruction *instruction, FILE *fp);
+int printRType(struct Instruction *instruction, char *buffer);
+int printIType(struct Instruction *instruction, char *buffer);
 int parseInstruction(char *line, struct Instruction *instruction);
 
 #endif

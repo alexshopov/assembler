@@ -23,13 +23,13 @@ int setImmediate(char *immediate) {
 	return (int)strtol(immediate, NULL, 16);
 }
 
-int printRType(struct Instruction *instruction, FILE *fp) {
-	fprintf(fp, "%04d : %d%d%d%d\n", instruction->address, instruction->opcode, instruction->r1, instruction->r2, instruction->funccode);
+int printRType(struct Instruction *instruction, char *buffer) {
+	sprintf(buffer, "%04d : %d%d%d%d", instruction->address, instruction->opcode, instruction->r1, instruction->r2, instruction->funccode);
 	return 0;
 }
 
-int printIType(struct Instruction *instruction, FILE *fp) {
-	fprintf(fp, "%04d : %d%d%02d\n", instruction->address, instruction->opcode, instruction->r1, instruction->immediate);
+int printIType(struct Instruction *instruction, char *buffer) {
+	sprintf(buffer, "%04d : %d%d%02d", instruction->address, instruction->opcode, instruction->r1, instruction->immediate);
 	return 0;
 }
 

@@ -23,7 +23,7 @@ void add_instruction(char *buffer) {
 
 void test_r_type(void) {
     char buffer[100];
-    sprintf(buffer, "add $r1, $r2");
+    sprintf(buffer, "add $r1, $r2 -- comment");
     char *expected = "0000 : 0010";
     add_instruction(buffer);
 
