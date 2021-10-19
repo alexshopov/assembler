@@ -15,37 +15,37 @@ void add_instruction(char *buffer) {
 	parseInstruction(buffer, instruction);
 
     if (instruction->type == R_TYPE) {
-        sprintf(buffer, "%04d : %d%d%d%d", instruction->address, instruction->opcode, instruction->r1, instruction->r2, instruction->funccode);
-    } else {
-        sprintf(buffer, "%04d : %d%d%02d", instruction->address, instruction->opcode, instruction->r1, instruction->immediate);
+        printRType(instruction, buffer);
+    } else if (instruction->type == I_TYPE) {
+        printIType(instruction, buffer);
     }
 }
 
 void test_r_type(void) {
-    char buffer[100];
-    sprintf(buffer, "add $r1, $r2 -- comment");
+    char buffer[15];
+    sprintf(buffer, "add $r1, $r2");
     char *expected = "0000 : 0010";
+
     add_instruction(buffer);
 
     if (strcmp(buffer, expected) != 0) {
-        sprintf(buffer, "%s != %s", buffer, expected);
-        printf("%s\n", buffer);
-        CU_FAIL("test_r_type failed");
+        printf("test_r_type failed: %s != %s\n", buffer, expected);
+        CU_FAIL();
     } else {
         CU_PASS();
     }
 }
 
 void test_i_type(void) {
-    char buffer[100];
+    char buffer[15];
     sprintf(buffer, "li $r2, 0x2");
     char *expected = "0000 : 1102";
+
     add_instruction(buffer);
 
     if (strcmp(buffer, expected) != 0) {
-        sprintf(buffer, "%s != %s", buffer, expected);
-        printf("%s\n", buffer);
-        CU_FAIL("test_i_type failed");
+        printf("test_i_type failed: %s != %s\n", buffer, expected);
+        CU_FAIL();
     } else {
         CU_PASS();
     }
