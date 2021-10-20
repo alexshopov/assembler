@@ -6,8 +6,8 @@
 #include "constants.h"
 
 int main(int argc, char **argv) {
-	FILE *in, *out;
-	char * line = NULL;
+	FILE *in;
+	char *line = NULL;
     size_t len = 0;
     int read;
 	int programcounter = 0;
@@ -28,11 +28,9 @@ int main(int argc, char **argv) {
 		programcounter = parseLine(line, programcounter, current);
     }
 
-	out = fopen(argv[2], "w");
-	writeMIF(out, head);
-
 	fclose(in);
-	fclose(out);
+
+	writeMIF(argv[2], head);
 
 	return 0;
 }
@@ -44,7 +42,8 @@ int parseLine(char *line, int programcounter, struct Instruction *instruction) {
 	return ++programcounter;
 }
 
-int writeMIF(FILE *fp, struct Instruction *instruction) {
+int writeMIF(char *filename, struct Instruction *instruction) {
+	FILE *fp = fopen(filename, "w");
 	struct Instruction *current = instruction;
 	char buffer[13];
 
@@ -60,6 +59,8 @@ int writeMIF(FILE *fp, struct Instruction *instruction) {
 
 		current = current->next;
 	}
+
+	fclose(fp);
 
 	return 0;
 }

@@ -33,7 +33,9 @@ int setRegister(char *reg) {
 		reg[strlen(reg) - 1] = '\0';
 	}
 	
-	if (strcmp(reg, "$r1") == 0) {
+	if (strcmp(reg, "$r0") == 0) {
+		return REG_0;
+	} else if (strcmp(reg, "$r1") == 0) {
 		return REG_1;
 	} else if (strcmp(reg, "$r2") == 0) {
 		return REG_2;

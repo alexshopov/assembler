@@ -26,12 +26,12 @@ void test_r_type(void) {
     sprintf(buffer, "add $r1, $r2");
     add_instruction(buffer);
 
-    CU_ASSERT_STRING_EQUAL(buffer, "0000 : 0010");
+    CU_ASSERT_STRING_EQUAL(buffer, "0000 : 0120");
 }
 
 void test_i_type(void) {
     char buffer[15];
-    sprintf(buffer, "li $r2, 0x2");
+    sprintf(buffer, "li $r1, 0x2");
     add_instruction(buffer);
 
     CU_ASSERT_STRING_EQUAL(buffer, "0000 : 1102");

@@ -13,7 +13,8 @@
 #define FUNC_ADD	0x0
 
 // REGISTERS
-#define REG_1		0x0	
-#define REG_2		0x1
+#define REG_0		0x0	
+#define REG_1		0x1
+#define REG_2		0x2
 
 #endif
