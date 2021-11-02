@@ -26,9 +26,9 @@ li:  opcode 0x1
 
 Example:
 ```
-li  $r1, 0x2
-li  $r2, 0x3
-add $r1, $r2
+li  $r0, 0x2
+li  $r1, 0x3
+add $r0, $r1
 
 would output
 
